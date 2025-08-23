@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+      <title>
+        {{ title }} Page
+      </title>
+    {% else %}
+      <title>
+        Blog Page
+      </title>
+    {% endif %}
+</head>
+<body>
+  {% block content %}{% endblock %}
+  {% load django_browser_reload %}
+  {% django_browser_reload_script %}
+</body>
+</html>
