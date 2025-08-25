@@ -1,11 +1,20 @@
 {% extends "blog/base.html" %}
 {% block content %}
     {% for post in posts %}
-      <article>
-        <h2>{{ post.title }}</h2>
-        <p><strong>By:</strong> {{ post.author }} | <em>{{ post.date }}</em></p>
-        <p>{{ post.content }}</p>
+      <article class="w-auto">
+        <div class="card border-success mb-3">
+          <div class="d-flex article-metadata align-items-center justify-content-between border-bottom border-success border-2 w-auto">
+          <a class="mr-2 card-header bg-transparent text-decoration-none fw-semibold border-bottom-0 fs-med" href="#">{{ post.author }}</a>
+          <div class="card-header bg-transparent border-bottom-0 fs-sm">{{ post.date }}</div>
+        </div>
+          <div class="card-body text-success">
+            <h5 class="card-title">{{ post.title }}</h5>
+            {{ post.content|slice:":150" }}
+            {% if post.content|length > 150 %}... 
+            <a href="#">Read more</a>
+            {% endif %}
+          </div>
+        </div>
       </article>
-      <hr>
     {% endfor %}
 {% endblock content %}
