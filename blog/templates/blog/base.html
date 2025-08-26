@@ -26,14 +26,14 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
         <div class="container my-1 d-flex align-items-center">
-          <a class="navbar-brand mr-4 fw-bolder" href="/">My Blog</a>
+          <a class="navbar-brand mr-4 fw-bolder" href="{% url 'blog-home' %}">My Blog</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav me-auto">
-              <a class="nav-item nav-link fw-medium" href="/">Home</a>
-              <a class="nav-item nav-link fw-medium" href="/about">About</a>
+              <a class="nav-item nav-link fw-medium" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-item nav-link fw-medium" href="{% url 'blog-about' %}">About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
