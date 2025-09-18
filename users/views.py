@@ -5,9 +5,7 @@ from .forms import UserCustomForm
 def register(request):
   if request.method == 'POST':
     form = UserCustomForm(request.POST)
-    if form.is_valid != True:
-        return render(request, 'users/register.html', {'form': form})
-    else:
+    if form.is_valid:
         form.save()
         username = form.cleaned_data.get('first_name')
         messages.success(request, f'Account is created for {username}! You can now log in')
