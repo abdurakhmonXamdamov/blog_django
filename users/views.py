@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserCustomForm
+from django.contrib.auth.decorators import login_required
 
 def register(request):
   if request.method == 'POST':
@@ -8,11 +9,16 @@ def register(request):
     if form.is_valid:
         form.save()
         username = form.cleaned_data.get('first_name')
-        messages.success(request, f'Account is created for {username}! You can now log in')
-        return redirect('blog-home')
+        messages.success(request, f'Your account has been created, You can now log in!')
+        return redirect('login')
   else:
       form = UserCustomForm()
   return render(request, 'users/register.html', {'form': form})
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
+
 
 # we got different types of messages:
 

@@ -11,10 +11,14 @@
             <h5 class="card-title">{{ post.title }}</h5>
             {{ post.content|slice:":150" }}
             {% if post.content|length > 150 %}... 
-            <a href="#">Read more</a>
+            <a href="{% url 'blog-posts' %}">Read more</a>
             {% endif %}
           </div>
         </div>
       </article>
     {% endfor %}
 {% endblock content %}
+
+{% block sidebar %}
+  {% include "blog/article.html" %}
+{% endblock  %}

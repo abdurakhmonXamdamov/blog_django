@@ -3,23 +3,21 @@
 {% block content %}
 
   <div class="content-section">
-    <!-- <h4>Registration Form</h4> -->
-    <!-- <hr> -->
     <form method="POST">
       <!-- CSRF = Cross-Site Request Forgery (a common security attack). -->
       {% csrf_token %}
       <fieldset class="form-group">
-        <legend class="border-bottom mb-3">Join Today</legend>
+        <legend class="border-bottom mb-3">Login</legend>
         {{ form|crispy }}
       </fieldset>
       <div class="form-group">
-        <button class="w-100 btn btn-outline-success my-1" type="submit">Sign Up</button>
+        <button class="w-100 btn btn-outline-success my-2" type="submit">Login</button>
       </div>
     </form>
-    <div class="pt-2">
+    <div class="border-top pt-2">
       <small class="text-muted">
-        Already have an account ?
-        <a href="{% url 'login' %}" class="ml-2">Sign In</a>
+        Need an account ?
+        <a href="{% url 'register' %}" class="ml-2">Sign UP</a>
       </small>
     </div>
   </div>

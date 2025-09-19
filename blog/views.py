@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from datetime import datetime
 from .models import Posts
 
 # Create your views here.
@@ -13,3 +12,5 @@ def home(request):
 def about(request):
   return render(request, 'blog/about.html', {'title': 'About'})
 
+def posts(request):
+  return render(request, 'blog/full_post.html')
