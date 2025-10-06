@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm # for login purposes
 
 class UserCustomForm(UserCreationForm):
-  # first_name = forms.CharField(max_length=30, required=True)
-  # last_name = forms.CharField(max_length=30, required=True)
   email = forms.EmailField(
     widget= forms.EmailInput(attrs={
       'class': 'form-control',

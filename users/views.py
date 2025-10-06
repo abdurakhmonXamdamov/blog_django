@@ -2,14 +2,20 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserCustomForm
 from django.contrib.auth.decorators import login_required
+from .helper import send_welcome_email
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def register(request):
   if request.method == 'POST':
     form = UserCustomForm(request.POST)
     if form.is_valid():
-        form.save()
+        user = form.save()
         username = form.cleaned_data.get('username')
+        email = form.cleaned_data.get('email')
+        send_welcome_email(username=username, email=email)
+
         messages.success(request, f'{username} your account has been created, You can now log in!')
         return redirect('login')
     else:
@@ -21,14 +27,3 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
-
-
-
-
-# we got different types of messages:
-
-# messages.info
-# messages.success
-# messages.debug
-# messages.warning
-# messages.error
