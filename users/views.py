@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserCustomForm
+from .forms import UserCustomForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from .helper import send_welcome_email
 from django.core.mail import send_mail
@@ -26,4 +26,22 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+      user_form = UserUpdateForm( request.POST, instance=request.user)
+      profile_form = ProfileUpdateForm(request.POST, request.FILES,  instance=request.user.profile)
+
+      if profile_form.is_valid() and user_form.is_valid():
+        user_form.save()
+        profile_form.save()
+        messages.success(request, 'Your Profile have been updated!')
+        return redirect('profile')
+    else:
+      profile_form = ProfileUpdateForm(instance=request.user.profile)
+      user_form = UserUpdateForm(instance=request.user)
+
+    context = {
+      'profile_form': profile_form,
+      'user_form': user_form
+    }
+
+    return render(request, 'users/profile.html', context)
