@@ -2,25 +2,25 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <div class="content-section">
-    <!-- <h4>Registration Form</h4> -->
-    <!-- <hr> -->
-    <form method="POST">
-      <!-- CSRF = Cross-Site Request Forgery (a common security attack). -->
-      {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-3">Join Today</legend>
-        {{ form|crispy }}
-      </fieldset>
-      <div class="form-group">
-        <button class="w-100 btn btn-outline-success my-1" type="submit">Sign Up</button>
+
+  <div class="container min-vh-100">
+    <div class="card shadow p-4 bg-body text-body border-success" style="max-width: 700px; width: 100%;">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-3 fw-semibold">Join Today</legend>
+          {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+          <button class="w-100 btn btn-outline-success my-2" type="submit">Sign Up</button>
+        </div>
+      </form>
+      <div class="border-top border-success pt-2">
+        <small class="text-muted">
+          Already have an account ?
+          <a href="{% url 'login' %}" class="ml-2">Sign In</a>
+        </small>
       </div>
-    </form>
-    <div class="pt-2">
-      <small class="text-muted">
-        Already have an account ?
-        <a href="{% url 'login' %}" class="ml-2">Sign In</a>
-      </small>
     </div>
   </div>
 

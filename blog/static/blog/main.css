@@ -1,7 +1,26 @@
-body {
-  background: #fafafa;
-  color: #333333;
+/* body {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
   margin-top: 5rem;
+  height: 100vh;
+} */
+
+body {
+  background-color: #f8f9fa;  
+  color: #212529;            
+  margin-top: 5rem;
+  height: 100vh; 
+}
+
+
+html[data-bs-theme='dark'] body {
+  background-color: #1e211e;  
+  color: #e0e0e0;         
+}
+
+
+html {
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -13,7 +32,7 @@ ul {
 }
 
 .container {
-  max-width: 970px;  /* change number until it looks good */
+  max-width: 970px;  
 }
 
 .bg-steel {
@@ -95,3 +114,48 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.checkbox{
+  display: none;
+  position: absolute;
+  display: none !important;
+}
+
+.checkbox-label{
+  background-color: #111;
+  width: 56px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+.checkbox-label .ball{
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball{
+  transform: translateX(29.5px);
+  transition: transform 0.3s ease;
+}
+#checkbox{
+  display: none;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+

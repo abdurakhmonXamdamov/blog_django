@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <div class="content-section">
+  <!-- <div class="content-section">
     <form method="POST">
-      <!-- CSRF = Cross-Site Request Forgery (a common security attack). -->
+        
       {% csrf_token %}
       <fieldset class="form-group">
         <legend class="border-bottom mb-3">Login</legend>
@@ -20,6 +20,28 @@
         <a href="{% url 'register' %}" class="ml-2">Sign UP</a>
       </small>
     </div>
+  </div> -->
+
+  <div class="container min-vh-100">
+    <div class="card shadow p-4 bg-body text-body border-success" style="max-width: 700px; width: 100%;">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-3 fw-semibold">Login</legend>
+          {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+          <button class="w-100 btn btn-outline-success my-2" type="submit">Login</button>
+        </div>
+      </form>
+      <div class="border-top border-success pt-2">
+        <small class="text-muted">
+          Need an account?
+          <a href="{% url 'register' %}" class="ml-2">Sign up</a>
+        </small>
+      </div>
+    </div>
   </div>
+  
 
 {% endblock content %}

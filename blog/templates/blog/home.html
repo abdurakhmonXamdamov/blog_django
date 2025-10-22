@@ -15,7 +15,7 @@
               {{ post.date_posted|date:"M d, Y" }}
             </div>
         </div>
-          <div class="card-body text-success">
+          <div class="card-body text-success cursor-pointer">
             <h5 class="card-title">{{ post.title }}</h5>
             {{ post.content|slice:":150" }}
             {% if post.content|length > 150 %}... 
