@@ -1,4 +1,24 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h4>Uka sabirqil bu page hali bitmadi </h4>
+      <article class="w-auto">
+        <div class="card border-success mb-3">
+          <div class="d-flex article-metadata align-items-center justify-content-between border-bottom border-success border-2 w-auto">
+            <a class="mr-2 card-header bg-transparent text-decoration-none fw-semibold border-bottom-0 fs-med" 
+            href="{% url 'profile' %}">
+                <img src="{{ object.author.profile.avatar.url }}" alt="Author's Image" 
+                class="rounded-circle"
+                style="height: 40px; width: 40px; margin-right: 3px;">
+                {{ object.author }}
+            </a>
+            <div class="card-header bg-transparent border-bottom-0 fs-sm">
+              {{ object.date_posted|date:"M d, Y" }}
+            </div>
+        </div>
+          <div class="card-body text-success cursor-pointer">
+            <h5 class="card-title">{{ object.title }}</h5>
+            {{ object.content }}
+          </div>
+        </div>
+      </article>
 {% endblock content %}
+
