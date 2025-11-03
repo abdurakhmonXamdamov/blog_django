@@ -15,9 +15,9 @@
               {{ post.date_posted|date:"M d, Y" }}
             </div>
         </div>
-          <div class="card-body text-success cursor-pointer">
+          <div class="card-body cursor-pointer">
             <h5 class="card-title"><a class="card-title link-underline link-underline-opacity-0" href="{% url 'post-detail' post.pk  %}">{{ post.title }}</a></h5>
-            {{ post.content|slice:":150" }}
+            {{ post.content|safe|slice:":150" }}
             {% if post.content|length > 150 %}... 
             <a href="{% url 'post-detail' post.pk  %}">Read more</a>
             {% endif %}

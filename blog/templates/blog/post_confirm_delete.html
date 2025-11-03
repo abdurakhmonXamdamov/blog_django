@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+  <div class="container min-vh-100">
+    <div class="card shadow p-4 bg-body text-body border-success" style="max-width: 700px; width: 100%;">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-3 fw-semibold">Delete Post</legend>
+          <p class="fs-5 lead">Are you sure you want to delete the post <strong>{{ object.title }}</strong>?</p>
+        </fieldset>
+        <div class="form-group d-flex gap-3">
+          <button class="btn btn-outline-danger my-2" type="submit">Yes, Delete</button>
+          <a class="btn btn-outline-secondary my-2" href="{% url 'post-detail' object.id %}">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock content %}

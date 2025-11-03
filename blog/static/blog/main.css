@@ -159,3 +159,8 @@ a.article-title:hover {
   cursor: pointer;
 }
 
+.dropdown-item:active,
+.dropdown-item:focus {
+  background-color: transparent !important;
+  color: inherit !important;
+}

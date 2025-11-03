@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_browser_reload',
+    'ckeditor', #For rich text editing in the blog posts
+    'ckeditor_uploader', #For uploading images to the blog posts
 ]
 
 MIDDLEWARE = [
@@ -133,6 +135,27 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'custom',
+        'toolbar_Custom': [
+            [
+                'Bold', 'Italic', 'Underline',
+                '-', 'NumberedList', 'BulletedList',
+                '-', 'Link', 'Unlink',
+                '-', 'Undo', 'Redo',
+                '-', 'RemoveFormat',
+            ],
+        ],
+        'height': 250,
+        'width': '100%',
+        'resize_enabled': False,
+    },
+}
+
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
