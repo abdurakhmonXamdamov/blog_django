@@ -1,15 +1,38 @@
-/* body {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  margin-top: 5rem;
-  height: 100vh;
-} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   background-color: #f8f9fa;  
   color: #212529;            
   margin-top: 5rem;
-  height: 100vh; 
+  min-height: 100vh; 
+  overflow-x: hidden;
+}
+
+/* Ensure columns stay side by side */
+@media (min-width: 768px) {
+  .row {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .col-md-8, .col-md-4 {
+    flex-shrink: 0;
+  }
+}
+
+/* Prevent content overflow */
+.card-body {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 
@@ -24,7 +47,7 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: inherit;
 }
 
 ul {
@@ -163,4 +186,31 @@ a.article-title:hover {
 .dropdown-item:focus {
   background-color: transparent !important;
   color: inherit !important;
+}
+
+.page-item.active .page-link {
+  background-color: #16a085;  
+  border-color: #16a085;      /* match border */
+  color: #fff;                /* text color */
+}
+
+.page-link {
+  color: #16a085; /* your main color */
+  border: 1px solid #dee2e6; /* keeps Bootstrap border look */
+}
+
+/* Hover effect for better UX */
+.page-link:hover {
+  color: white;
+  background-color: #16a085;
+  border-color: #16a085;
+}
+
+.box_author{    
+  padding: 0.5rem 1rem;          
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;   
+  background-color: rgba(25, 135, 84, 0.195);         
+  border-radius: 0.5rem;        
+  font-weight: 500;     
 }

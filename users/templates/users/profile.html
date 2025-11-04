@@ -1,37 +1,109 @@
-{% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" id="theme-toggle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="container ">
-  <div class="card bg-body text-body shadow-sm p-4 border-success rounded-4" style="max-width: 700px; margin: 0 auto;">
-    
-    <div class="d-flex align-items-center pb-3 mb-3">
-      <img 
-        src="{{ user.profile.avatar.url }}" 
-        alt="Profile Picture"
-        class="rounded-circle me-3 border border-2 border-success"
-        style="width: 100px; height: 100px; object-fit: cover;"
-      >
-      <div>
-        <h3 class="fw-semibold mb-0">{{ user.username }}</h3>
-        <p class="text-secondary mb-0">{{ user.email }}</p>
-        <p class="text-muted small mb-0">{{ user.profile.bio }}</p>
+  <link rel="icon" type="image/x-icon" href="{% static 'blog/favicon/favicon.ico' %}">
+  <link rel="apple-touch-icon" href="{% static 'blog/favicon/apple-touch-icon.png' %}">
+  <link rel="stylesheet" href="{% static 'blog/main.css' %}">
+
+  <script>
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+    if (savedTheme === 'dark') {
+        checkbox.checked = true;
+      } else {
+        checkbox.checked = false;
+      }
+  </script>
+
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
+      <div class="container my-1 d-flex align-items-center">
+        <a class="navbar-brand mr-4 fw-bolder" href="{% url 'blog-home' %}">My Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav me-auto">
+            <a class="nav-item nav-link fw-medium" href="{% url 'blog-home' %}">Home</a>
+            <a class="nav-item nav-link fw-medium" href="{% url 'blog-about' %}">About</a>
+          </div>
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav">
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link fw-medium" href="{% url 'post-create' %}">New Post</a>
+            <a class="nav-item nav-link fw-medium" href="{% url 'profile' %}">Profile</a>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link nav-item nav-link fw-medium" style="border:none; background:none;">
+                Logout
+              </button>
+            </form>
+            {% else %}
+              <a class="nav-item nav-link fw-medium" href="{% url 'login' %}">Login</a>
+              <a class="nav-item nav-link fw-medium" href="{% url 'register' %}">Register</a>
+            {% endif %}
+            <div class="row align-items-center justify-content-center ms-2">
+              <input type="checkbox" class="checkbox" id="checkbox">
+              <label for="checkbox" class="checkbox-label">
+                <i class="fa-solid fa-moon" style="color:#f1c40f"></i>
+                <i class="fa-solid fa-sun" style="color: #f39c12;"></i>
+                <span class="ball"></span>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
+    </nav>
+  </header>
+
+  <div class="container ">
+    <div class="card bg-body text-body shadow-sm p-4 border-success rounded-4" style="max-width: 700px; margin: 0 auto;">
+      
+      <div class="d-flex align-items-center pb-3 mb-3">
+        <img 
+          src="{{ user.profile.avatar.url }}" 
+          alt="Profile Picture"
+          class="rounded-circle me-3 border border-2 border-success"
+          style="width: 100px; height: 100px; object-fit: cover;"
+        >
+        <div>
+          <h3 class="fw-semibold text-body-emphasis mb-0">{{ user.username }}</h3>
+          <p class="text-secondary mb-0">{{ user.email }}</p>
+          <p class="text-muted small mb-0">{{ user.profile.bio }}</p>
+        </div>
+      </div>
+  
+      <!-- Update Form -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-3 fs-5 fw-semibold text-success">Profile Info</legend>
+          {{ user_form|crispy }}
+          {{ profile_form|crispy }}
+        </fieldset>
+        <div class="d-grid mt-3">
+          <button class="btn btn-success" type="submit">Update Profile</button>
+        </div>
+      </form>
     </div>
-
-    <!-- Update Form -->
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-3 fs-5 fw-semibold text-success">Profile Info</legend>
-        {{ user_form|crispy }}
-        {{ profile_form|crispy }}
-      </fieldset>
-      <div class="d-grid mt-3">
-        <button class="btn btn-success" type="submit">Update Profile</button>
-      </div>
-    </form>
   </div>
-</div>
 
-{% endblock content %}
+  <script src="{% static 'Js/script.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

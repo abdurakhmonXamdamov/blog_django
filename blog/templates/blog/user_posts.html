@@ -1,11 +1,14 @@
 {% extends "blog/base.html" %}
 {% block content %}
+    <div class="box_author">
+      <h1 class="fw-semibold uppercase">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    </div>
     {% for post in posts %}
       <article class="w-auto">
         <div class="card border-success mb-3">
           <div class="d-flex article-metadata align-items-center justify-content-between border-bottom border-success border-2 w-auto">
             <a class="mr-2 card-header bg-transparent text-decoration-none fw-semibold border-bottom-0 fs-med" 
-            href="{% url 'user-posts' post.author.username %} ">
+            href="{% url 'user-posts' post.author.username %}">
                 <img src="{{ post.author.profile.avatar.url }}" alt="Author's Image" 
                 class="rounded-circle"
                 style="height: 40px; width: 40px; margin-right: 3px;">

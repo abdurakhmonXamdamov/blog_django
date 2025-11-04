@@ -15,8 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'blog/main.css' %}">
-    {% if title %}
 
+    <link rel="icon" type="image/x-icon" href="{% static 'blog/favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'blog/favicon/apple-touch-icon.png' %}">
+
+    
     <script>
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-bs-theme', savedTheme);
@@ -27,7 +30,8 @@
           checkbox.checked = false;
         }
     </script>
-    
+
+    {% if title %}
       <title>
         {{ title }} Page
       </title>
@@ -92,8 +96,10 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
-          {% block sidebar %}
-          {% endblock %}
+          <div class="position-sticky" style="top: 80px;">
+            {% block sidebar %}
+            {% endblock %}
+          </div>
         </div>
       </div>
     </main>

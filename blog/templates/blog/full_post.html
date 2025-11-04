@@ -5,7 +5,7 @@
     <div class="d-flex article-metadata align-items-center justify-content-between border-bottom border-success border-2 w-auto">
       <div>
         <a class="mr-1 card-header bg-transparent text-decoration-none fw-semibold border-bottom-0 fs-med" 
-          href="{% url 'profile' %}">
+          href="{% url 'user-posts' object.author.username %}">
           <img src="{{ object.author.profile.avatar.url }}" alt="Author's Image" 
               class="rounded-circle my-2"
               style="height: 40px; width: 40px; margin-right: 3px;">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="card-body cursor-pointer">
-      <h5 class="card-title text-success">{{ object.title }}</h5>
+      <h5 class="card-title fs-3 fw-bold">{{ object.title }}</h5>
       {{ object.content|safe }}
     </div>
   </div>
